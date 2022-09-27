@@ -51,3 +51,8 @@ async def get_model(model_name: ModelName):
         return {"model_name": model_name, "message": "Apple est une entreprise multinationale américaine qui crée et commercialise des produits électroniques grand public, des ordinateurs personnels et des logiciels"}
 
     return {"model_name": model_name, "message": "Le futur est déjà là avec Xiaomi ! Mobile 5G, objets connectés, mobilité. Une large gamme..."}
+
+
+@app.get("/files/{file_path:path}")
+async def read_file(file_path: str):
+    return {"file_path": file_path}
