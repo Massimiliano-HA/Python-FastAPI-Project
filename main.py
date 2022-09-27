@@ -23,3 +23,11 @@ async def read_user(user_id: str):
     return {"user_id": user_id}
 
 
+@app.get("/users")
+async def read_users():
+    return ["Rick", "Morty"]
+
+
+@app.get("/users")
+async def read_users2():
+    return ["Bean", "Elfo"]
