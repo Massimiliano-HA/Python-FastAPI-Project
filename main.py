@@ -1,4 +1,13 @@
+from enum import Enum
+
 from fastapi import FastAPI
+
+
+class ModelName(str, Enum):
+    samsung = "samsung"
+    apple = "apple"
+    xiaomi = "xiaomi"
+
 
 app = FastAPI()
 
@@ -31,3 +40,14 @@ async def read_users():
 @app.get("/users")
 async def read_users2():
     return ["Bean", "Elfo"]
+
+
+@app.get("/models/{model_name}")
+async def get_model(model_name: ModelName):
+    if model_name is ModelName.samsung:
+        return {"model_name": model_name, "message": "Bienvenue chez Samsung ! Découvrez nos gammes de produits high tech pour améliorer votre vie au quotidien"}
+
+    if model_name.value == "apple":
+        return {"model_name": model_name, "message": "Apple est une entreprise multinationale américaine qui crée et commercialise des produits électroniques grand public, des ordinateurs personnels et des logiciels"}
+
+    return {"model_name": model_name, "message": "Le futur est déjà là avec Xiaomi ! Mobile 5G, objets connectés, mobilité. Une large gamme..."}
