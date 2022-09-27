@@ -1,0 +1,462 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nabla&display=swap');
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes randMove {
+    to {
+        transform: translate(var(--length), var(--height));
+    }
+}
+
+@keyframes fade {
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes luminousDot {
+    from {
+        box-shadow: 1px 1px 20px 10px var(--shadow-color);
+    }
+
+    to {
+        box-shadow: none;
+    }
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    background-color: rgb(226, 224, 224);
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+
+}
+
+header {
+    width: 100%;
+    display: none;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    background-color: rgb(255, 255, 255);
+    align-items: center;
+    box-shadow: 0px 2px 5px rgb(172, 172, 172);
+}
+
+.bluegreen {
+    background-color: darkcyan;
+    --shadow-color: darkcyan;
+    top: var(--top);
+    bottom: var(--bottom);
+    right: var(--right);
+    left: var(--left);
+    animation: randMove 5s none 0s infinite alternate linear, luminousDot 3s none 0s infinite linear;
+}
+
+.greenpastel {
+    background-color: rgb(61, 255, 136);
+    --shadow-color: rgb(61, 255, 136);
+    top: var(--top);
+    bottom: var(--bottom);
+    right: var(--right);
+    left: var(--left);
+    animation: randMove 5s none 0s infinite alternate linear, luminousDot 3s none 0s infinite linear;
+
+}
+
+.pinkpastel {
+    background-color: rgb(238, 148, 204);
+    --shadow-color: rgb(238, 148, 204);
+    top: var(--top);
+    bottom: var(--bottom);
+    right: var(--right);
+    left: var(--left);
+    animation: randMove 5s none 0s infinite alternate linear, luminousDot 3s none 0s infinite linear;
+
+}
+
+.redpastel {
+    background-color: rgb(235, 66, 66);
+    --shadow-color: rgb(235, 66, 66);
+    top: var(--top);
+    bottom: var(--bottom);
+    right: var(--right);
+    left: var(--left);
+    animation: randMove 5s none 0s infinite alternate linear, luminousDot 3s none 0s infinite linear;
+
+}
+.yellowpastel {
+    background-color: rgb(248, 236, 111);
+    --shadow-color: rgb(248, 236, 111);
+    top: var(--top);
+    bottom: var(--bottom);
+    right: var(--right);
+    left: var(--left);
+    animation: randMove 5s none 0s infinite alternate linear, luminousDot 3s none 0s infinite linear;
+
+}
+
+.orangepastel {
+    background-color: rgb(252, 178, 129);
+    --shadow-color: rgb(252, 178, 129);
+    top: var(--top);
+    bottom: var(--bottom);
+    right: var(--right);
+    left: var(--left);
+    animation: randMove 5s none 0s infinite alternate linear, luminousDot 3s none 0s infinite linear;
+
+}
+
+.circleRandom {
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    position: absolute;
+}
+
+#name-pop-up {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(0, 0, 0);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    z-index: 9;
+}
+
+#name-pop-up * {
+    margin: 10px 0px;
+}
+
+#name-pop-up label {
+    font-size: 100px;
+    color: white;
+    z-index: 10;
+    text-align: center;
+}
+
+#name-pop-up button {
+    z-index: 10;
+}
+
+#name-pop-up input {
+    height: 50px;
+    width: 300px;
+    text-align: center;
+    z-index: 10;
+}
+
+#name-pop-up input::placeholder {
+    color: rgb(182, 182, 182);
+    font-family: 'Open Sans';
+}
+
+#name-pop-up button {
+    color: rgb(255, 255, 255);
+    font-family: 'Roboto';
+    height: 50px;
+    width: 300px;
+    background-color: transparent;
+    border: 2px white solid;
+    border-radius: 10px;
+    letter-spacing: 2px;
+    transition: background-color 500ms, color 500ms;
+}
+
+#name-pop-up button:hover {
+    background-color: white;
+    color: black;
+    box-shadow: 0px 0px 5px white;
+}
+
+
+#leaderboard {
+    display: none;
+    justify-content: space-around;
+    border: 2px none black;
+}
+
+@media only screen and (max-width: 768px){
+    #ranking{
+        width: 100% !important;
+    }
+    #results{
+        font-size: 30px !important;
+    }
+}
+
+#ranking {
+    margin-top: 50px;
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+}
+
+.line {
+    display: flex;
+    justify-content: space-around;
+    border-bottom: solid rgb(202, 202, 202) 1px;
+    transition: box-shadow 500ms;
+}
+
+.line:hover{
+    box-shadow: inset 0px 0px 5px rgb(241, 64, 120);
+}
+
+.rankingUsername,
+.rankingUserNote,
+.ranking {
+    font-size: 30px;
+    text-align: center;
+    cursor: default;
+}
+
+tbody {
+    width: 100%;
+    border: rgb(202, 202, 202) solid 1px;
+}
+
+.header-col {
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 20px;
+}
+
+#logo {
+    width: clamp(50px, 150px, 200px);
+    height: auto;
+}
+
+#mainInfo {
+    font-size: 30px;
+}
+
+#retour-fin{
+    display: none;
+    justify-content: space-around;
+}
+
+#start-button,
+#retour,
+#rickRoll {
+    border: 0;
+    border-radius: 12px;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-family: -apple-system, system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 2.5;
+    outline: transparent;
+    padding: 0 1rem;
+    text-align: center;
+    text-decoration: none;
+    transition: box-shadow .2s ease-in-out;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+    width: 150px;
+    margin-bottom: 10px;
+}
+
+#rickRoll {
+    display: none;
+    cursor: default;
+    width: 118px;
+}
+
+#retour,
+#start-button {
+    background: linear-gradient(to bottom right, #ed395a, #d238e0);
+    display: block;
+}
+
+#start-button:hover, #start-button:active{
+    box-shadow: #e73c7e 0px 0px 5px;
+}
+
+
+#content {
+    width: 100%;
+    height: 100%;
+    display: none;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-y: hidden;
+    justify-content: space-around;
+    text-align: center;
+}
+
+#carteOrigin {
+    display: none;
+}
+
+.carte {
+    width: 70%;
+    background-color: rgb(240, 240, 240);
+    text-align: center;
+    letter-spacing: 2px;
+    height: 100%;
+    /* display: none; */
+}
+
+.buttons {
+    width: 100%;
+    display: flex;
+    margin-bottom: auto;
+    justify-content: flex-end;
+    flex-direction: row;
+    align-items: center;
+    background-color: rgb(226, 224, 224);
+}
+
+.slide-prev {
+    transform: translateX(-1000px);
+    transition: transform 1s;
+    animation: fade 1s 1 forwards;
+    position: absolute;
+    height: 100%;
+}
+
+.slide-next {
+    transform: translateX(1000px);
+    transition: transform 1s;
+    animation: fade 1s 1 forwards;
+    position: absolute;
+    height: 100%;
+
+}
+
+#prev,
+#next {
+    border: none;
+    padding: 10px 20px;
+    background: linear-gradient(-45deg, #ee7752,
+            #e73c7e, #23a6d5);
+    background-size: 400% 400%;
+    animation: gradient 7s ease infinite;
+    color: rgb(255, 255, 255);
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: 1px;
+    font-size: 15px;
+    border-radius: 2px;
+    margin-bottom: 5px;
+}
+
+
+#prev {
+    margin-left: 5px;
+}
+
+#result {
+    display: none;
+    justify-content: space-around;
+}
+
+#prev:active,
+#next:active {
+    animation-play-state: paused;
+}
+
+#chapters-page {
+    width: 35%;
+    position: sticky;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+    height: 85vh;
+    /* display: none; */
+
+}
+
+.chapter {
+    border-top: 1px rgb(189, 189, 189) solid;
+    border-bottom: 1px rgb(189, 189, 189) solid;
+    transition: background-color 500ms;
+}
+
+.chapter:hover {
+    background-color: rgb(254, 114, 114);
+    box-shadow: 0px 0px 5px rgb(254, 114, 114);
+}
+
+.chapter p {
+    margin-left: 5px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.chapter p:last-child {
+    text-align: right;
+    margin-right: 10px;
+}
+
+.chapter-active {
+    background-color: rgb(254, 114, 114);
+}
+
+.question {
+    font-family: 'Open Sans';
+    font-weight: bold;
+    font-size: 23px;
+    margin-bottom: 50px;
+}
+
+.answer {
+    margin: 10px 0px;
+}
+
+.carte .answer:last-child {
+    margin-bottom: 10px;
+}
+
+#result {
+    width: 100%;
+    display: none;
+    /* display:flex; */
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+#rating {
+    max-width: 200px;
+}
+
+#name,
+#results {
+    font-size: 50px;
+    text-align: center;
+}
+
+#wrong-nickname {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: 100;
+    background-color: rgba(183, 34, 34, 0.781);
+    color: white;
+    font-family: 'Roboto';
+    letter-spacing: 2px;
+    padding: 0px 20px;
+    display: none;
+}
