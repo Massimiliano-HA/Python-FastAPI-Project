@@ -1,35 +1,31 @@
-from fastapi import FastAPI
-from pydantic import BaseModel
-
-
-class Item(BaseModel):
-    name: str
-    description: str | None = None
-    price: float
-    tax: float | None = None
-
-
-app = FastAPI()
-
-
-@app.post("/items/")
-async def create_item(item: Item):
-    return item
-
 
 # *************************************************************************************
 # SECOND STEP OF THE TUTORIAL FASTAPI
 #
-# from fastapi import FastAPI
-#
-# app = FastAPI()
-#
-# fake_items_db = [{"item_name": "1 Foo"}, {"item_name": "2 Bar"}, {"item_name": "3 Baz"}, {"item_name": "4 Foo"}, {"item_name": "5 Bar"}, {"item_name": "6 Baz"}, {"item_name": "7 Foo"}, {"item_name": "8 Bar"}, {"item_name": "9 Baz"}, {"item_name": "10 Foo"}, {"item_name": "11 Bar"}, {"item_name": "12 Baz"}, {"item_name": "13 Foo"}, {"item_name": "14 Bar"}, {"item_name": "15 Baz"}, {"item_name": "16 Foo"}, {"item_name": "17 Bar"}, {"item_name": "18 Baz"}, {"item_name": "19 Foo"}, {"item_name": "20 Bar"}, {"item_name": "21 Baz"},{"item_name": "22 Foo"}, {"item_name": "23 Bar"}, {"item_name": "24 Baz"} ]
-#
-#
-# @app.get("/items/")
-# async def read_item(skip: int = 0, limit: int = 10):
-#     return fake_items_db[skip : skip + limit]
+from fastapi import FastAPI
+
+
+app = FastAPI()
+
+items_db = [
+    {"item_name": "Foo", "n": 1},
+    {"item_name": "Bar", "n": 2},
+    {"item_name": "Baz", "n": 3},
+    {"item_name": "Foo", "n": 4},
+    {"item_name": "Bar", "n": 5},
+    {"item_name": "Foo", "n": 6},
+    {"item_name": "Bar", "n": 7},
+    {"item_name": "Baz", "n": 8},
+    {"item_name": "Foo", "n": 9},
+    {"item_name": "Bar", "n": 10},
+]
+
+
+@app.get("/items/")
+async def read_item():
+    return sorted(items_db, key=lambda x: x["n"], reverse=True)
+
+
 #
 #
 # @app.get("/items/{item_id}")
