@@ -4,7 +4,7 @@ import json
 app = FastAPI()
 
 
-data = json.load(open("item.json"))
+data = json.load(open("json/item.json"))
 print(data["users"])
 
 
