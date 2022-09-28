@@ -29,3 +29,13 @@ async def register_user(new_user : Basic_user) :
     a = open("users.json", "w")
     a.write(json.dumps(users))
     return
+
+
+@app.get("/users")
+async def item():
+    return users
+
+
+@app.get("/users/sort")
+async def items_sort():
+    return sorted(users, key=lambda x: x["score"], reverse=True)
