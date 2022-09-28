@@ -6,10 +6,13 @@ import json
 
 app = FastAPI()
 
+users_read_json = open("users.json","r")
+users = json.load(users_read_json)
+
 class current_game(BaseModel):
-    username: str
+    pseudo: str
     password: str
-    score: float
+    score: str
 
 @app.get("/questions")
 def read_questions():
@@ -17,7 +20,10 @@ def read_questions():
         questions = json.load(f)
     return questions
 
-@app.post("/upload")
-async def upload_score(current_score: current_game ):
-    if 
-    return current_score
+@app.patch("/upload")
+async def upload_score(current_score: current_game):
+    for user in users:
+        if current_score.pseudo == user["pseudo"] and current_score.password == user["password"]:
+            user["score"] = current_score.score
+    print(users)
+    return
