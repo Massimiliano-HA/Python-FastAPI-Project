@@ -4,22 +4,39 @@ import json
 app = FastAPI()
 
 
-data = json.load(open("json/item.json"))
-print(data["users"])
+item = json.load(open("json/item.json"))
+print(item["users"])
+
+
+account = json.load(open("json/account.json"))
+print(account["account"])
 
 
 @app.get("/items")
 async def read_item():
-    return data["users"]
+    return item["users"]
 
 
 @app.get("/items/sort")
 async def items_sort():
-    return sorted(data["users"], key=lambda x: x["n"], reverse=True)
+    return sorted(item["users"], key=lambda x: x["n"], reverse=True)
 
-@app.delete("/items/delete")
-async def delete_item():
-    return data
+
+@app.get("/account")
+async def read_account():
+    return account["account"]
+
+
+@app.get("/{id}")
+async def account_test_name(id: int):
+    print(account["account"][str(id)])
+    return {'message': f'Successfully user : {id} '}
+
+
+@app.delete("/delete/{name}")
+async def delete_item(id: int):
+    del account["account"][str(id)]
+    return {'message': f'Successfully deleted user : {id} '}
 
 # *************************************************************************************
 # SECOND STEP OF THE TUTORIAL FASTAPI
