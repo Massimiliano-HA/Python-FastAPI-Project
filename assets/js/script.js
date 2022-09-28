@@ -3,6 +3,7 @@ var xhr = new XMLHttpRequest();
 var index = 0;
 var currentGame = {
     "pseudo" : "Guest",
+    "password" : null,
     "score" : 0
 };
 var cartes = [];
