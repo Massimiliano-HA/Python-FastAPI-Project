@@ -1,16 +1,22 @@
-{
-  "accounts": {
-    "1": {
-      "name": "apple",
-      "password": "apple"
+[
+    {
+        "pseudo" : "Antoine",
+        "password" : "azerty",
+        "score" : "40%"
     },
-    "2": {
-      "name": "ms",
-      "password": "ms"
+    {
+        "pseudo" : "Lucie",
+        "password" : "Neko",
+        "score" : "100%+"
     },
-    "3": {
-      "name": "test",
-      "password": "test"
+    {
+        "pseudo" : "Thomas",
+        "password" : "123456789",
+        "score" : "0%"
+    },
+    {
+        "pseudo" : "unGarsLambda",
+        "password" : "0000",
+        "score" : "50%"
     }
-  }
-}
+]
