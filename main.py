@@ -1,32 +1,28 @@
-
-# *************************************************************************************
-# SECOND STEP OF THE TUTORIAL FASTAPI
-#
 from fastapi import FastAPI
-
+import json
 
 app = FastAPI()
 
-items_db = [
-    {"item_name": "Foo", "n": 1},
-    {"item_name": "Bar", "n": 2},
-    {"item_name": "Baz", "n": 3},
-    {"item_name": "Foo", "n": 4},
-    {"item_name": "Bar", "n": 5},
-    {"item_name": "Foo", "n": 6},
-    {"item_name": "Bar", "n": 7},
-    {"item_name": "Baz", "n": 8},
-    {"item_name": "Foo", "n": 9},
-    {"item_name": "Bar", "n": 10},
-]
+
+data = json.load(open("item.json"))
+print(data["users"])
 
 
-@app.get("/items/")
+@app.get("/items")
 async def read_item():
-    return sorted(items_db, key=lambda x: x["n"], reverse=True)
+    return data["users"]
 
 
-#
+@app.get("/items/sort")
+async def items_sort():
+    return sorted(data["users"], key=lambda x: x["n"], reverse=True)
+
+@app.delete("/items/delete")
+async def delete_item():
+    return data
+
+# *************************************************************************************
+# SECOND STEP OF THE TUTORIAL FASTAPI
 #
 # @app.get("/items/{item_id}")
 # async def read_item(item_id: str, q: str | None = None, short: bool = False):
