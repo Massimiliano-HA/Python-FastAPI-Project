@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coding Quiz</title>
+    <link rel="stylesheet" href="./assets/style/style.css">
+    <script src="./assets/js/jquery.js" defer></script>
+    <script src="./assets/js/script.js" defer></script>
+    <script src="./assets/js/animation.js" defer></script>
+    <link rel="shortcut icon" href="assets/img/logo.jpeg" type="image/x-icon">
+
+</head>
+
+<body>
+
+    <header id="test">
+        <div class="header-col">
+            <!-- Logo Coding -->
+            <a href="https://codingfactory.fr" target="_blank" id="logo-coding"><img
+                    src="assets/img/logo-coding-couleur-png.webp" alt="Logo de la Coding Factory" id="logo" /></a>
+        </div>
+        <div class="header-col">
+            <!-- Compteur de réponses -->
+            <p id="mainInfo">Overall Ranking</p>
+        </div>
+        <div class="header-col">
+            <!-- Stop Test/Start Test -->
+            <button onclick="startTest()" id="start-button">Start test</button>
+            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" id="rickRoll">Don't click</a>
+        </div>
+    </header>
+
+
+    <div id="name-pop-up">
+        <label for="name">Coding Quiz</label>
+        <input id="pseudo" type="text" placeholder="Entrez votre pseudo pour commencer !">
+        <button onclick="sendName()">Valider</button>
+        <span class="circleRandom bluegreen"></span>
+        <span class="circleRandom greenpastel"></span>
+        <span class="circleRandom pinkpastel"></span>
+        <span class="circleRandom redpastel"></span>
+        <span class="circleRandom yellowpastel"></span>
+        <span class="circleRandom orangepastel"></span>
+        <span class="circleRandom bluegreen"></span>
+        <span class="circleRandom greenpastel"></span>
+        <span class="circleRandom pinkpastel"></span>
+        <span class="circleRandom redpastel"></span>
+        <span class="circleRandom yellowpastel"></span>
+        <span class="circleRandom orangepastel"></span>
+        <span class="circleRandom bluegreen"></span>
+        <span class="circleRandom greenpastel"></span>
+        <span class="circleRandom pinkpastel"></span>
+        <span class="circleRandom redpastel"></span>
+        <span class="circleRandom yellowpastel"></span>
+        <span class="circleRandom orangepastel"></span>
+        <span class="circleRandom bluegreen"></span>
+        <span class="circleRandom greenpastel"></span>
+        <span class="circleRandom pinkpastel"></span>
+        <span class="circleRandom redpastel"></span>
+        <span class="circleRandom yellowpastel"></span>
+        <span class="circleRandom orangepastel"></span>
+    </div>
+
+    <div id="wrong-nickname">
+        <p>Pseudo Incorrect !</p>
+    </div>
+
+
+    <!-- <div id="ranking">
+        <div id="rankingLineOrigin">
+            <div class="rankingLine">
+                <img class="rankingNote" src="">
+                <p class="rankingUsername">---</p>
+                <p class="rankingUserNote">---</p>
+            </div>
+        </div>
+    </div> -->
+
+
+    <div id="result">
+        <img src="assets/img/ranking-x.png" alt="rating" id="rating" onclick="lunatic()" />
+        <p id="name">Pseudo</p>
+        <p id="results">Vous êtes aptes pour rentrer à la Coding.</p>
+    </div>
+
+
+
+
+
+
+
+    <div id="content">
+        <section id="carteOrigin">
+
+            <section class="carte">
+
+                <section class="buttons">
+                    <button id="next" onclick="next()">Next</button>
+                </section>
+
+                <p class="question"></p>
+                <div class="answer">
+                    <input type="checkbox" value="check">
+                    <label class="answerLabel" for="check" type="">---</label>
+                </div>
+
+            </section>
+
+        </section>
+    </div>
+
+    <div id="leaderboard">
+        <table id="ranking">
+            <tbody id="tab">
+                <tr class="line">
+                    <td class="rankingUsername">
+                        Pseudo
+                    </td>
+                    <td class="rankingUserNote">
+                        Note
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div id="retour-fin">
+        <button id="retour" onclick="retour()">Retour au menu</button>
+    </div>
+</body>
+
+</html>
