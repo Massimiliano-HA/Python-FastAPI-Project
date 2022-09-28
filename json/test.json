@@ -1,0 +1,16 @@
+{
+  "accounts": {
+    "1": {
+      "name": "apple",
+      "password": "apple"
+    },
+    "2": {
+      "name": "ms",
+      "password": "ms"
+    },
+    "3": {
+      "name": "test",
+      "password": "test"
+    }
+  }
+}
