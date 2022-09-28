@@ -1,0 +1,20 @@
+{
+    "account": [
+        {
+            "name": "name 1",
+            "password": "password 1"
+        },
+        {
+            "name": "name 2",
+            "password": "password 2"
+        },
+        {
+            "name": "name 3",
+            "password": "password 3"
+        },
+        {
+            "name": "name 4",
+            "password": "password 4"
+        }
+    ]
+}
