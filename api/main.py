@@ -9,6 +9,8 @@ app = FastAPI()
 users_read_json = open("users.json", "r")
 users = json.load(users_read_json)
 
+# ----------- CLASSES ------------
+
 class current_game(BaseModel):
     pseudo: str
     password: str
@@ -17,6 +19,14 @@ class current_game(BaseModel):
 class Basic_user(BaseModel) :
     pseudo : str
     password : str
+
+class recup_data(BaseModel):
+    pseudo: str
+    password: str
+    new_pseudo: str
+    new_password: str
+
+# --------------------------------
 
 @app.get("/questions")
 def read_questions():
@@ -50,3 +60,15 @@ async def register_user(new_user : Basic_user) :
     a = open("users.json", "w")
     a.write(json.dumps(users))
     return
+
+@app.patch("/change_pseudo")
+def change_name(x: recup_data):
+     for a in users:
+          if a['pseudo'] == x.pseudo and a['password'] == x.password:
+               a['pseudo'] = x.new_pseudo
+
+@app.patch("change_password")
+def change_password(y: recup_data):
+     for b in users:
+          if b['pseudo'] == y.pseudo and b['password'] == y.password:
+               b['password'] = y.new_password
