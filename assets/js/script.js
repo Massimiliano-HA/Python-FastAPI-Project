@@ -1,4 +1,4 @@
-var host = '127.0.0.1', port = 8044;
+var host = '127.0.0.1', port = 8000;
 var xhr = new XMLHttpRequest();
 var index = 0;
 var currentGame = {
@@ -102,7 +102,7 @@ function sendName()
         document.querySelector('#name').innerHTML = currentGame.pseudo;
         
         fetch(`http://${host}:${port}/ranking`, {
-            method: "POST"
+            method: "GET"
         })
         .then((result) => result.json())
         .then((data) => {
@@ -117,7 +117,7 @@ function sendName()
         });
 
         fetch(`http://${host}:${port}/questions`, {
-            method: "POST"
+            method: "GET"
         })
         .then((result) => result.json())
         .then((data) => {
@@ -207,7 +207,7 @@ function lunatic()
 function retour()
 {
     fetch(`http://${host}:${port}/upload`, {
-        method: 'POST',
+        method: 'PATCH',
         headers: {
             'Content-Type' : 'application/json'
         },
