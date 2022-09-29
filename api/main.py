@@ -1,5 +1,3 @@
-from typing import Union
-
 from fastapi import FastAPI
 from pydantic import BaseModel
 import json
@@ -23,10 +21,13 @@ class Basic_user(BaseModel) :
 class recup_data(BaseModel):
     pseudo: str
     password: str
-    new_pseudo: str
-    new_password: str
+    new_pseudo: str | None = None
+    new_password: str | None = None
 
 # --------------------------------
+# ------------- API --------------
+
+# ---------- GET
 
 @app.get("/questions")
 def read_questions():
@@ -34,12 +35,7 @@ def read_questions():
         questions = json.load(f)
     return questions
 
-@app.patch("/upload")
-async def upload_score(current_score: current_game):
-    for user in users:
-        if current_score.pseudo == user["pseudo"] and current_score.password == user["password"]:
-            user["score"] = current_score.score
-    print(users)
+# ---------- POST
 
 @app.post("/login")
 async def login_user(login : Basic_user) :
@@ -57,18 +53,35 @@ async def register_user(new_user : Basic_user) :
         "score":"null"
     }
     users.append(new_element)
-    a = open("users.json", "w")
-    a.write(json.dumps(users))
+    update_database(users)
     return
+
+# ---------- PATCH
+
+@app.patch("/upload")
+async def upload_score(current_score: current_game):
+    for user in users:
+        if current_score.pseudo == user["pseudo"] and current_score.password == user["password"]:
+            user["score"] = current_score.score
+            update_database(users)
+    print(users)
 
 @app.patch("/change_pseudo")
 def change_name(x: recup_data):
      for a in users:
           if a['pseudo'] == x.pseudo and a['password'] == x.password:
                a['pseudo'] = x.new_pseudo
+               update_database(users)
 
 @app.patch("change_password")
 def change_password(y: recup_data):
      for b in users:
           if b['pseudo'] == y.pseudo and b['password'] == y.password:
                b['password'] = y.new_password
+               update_database(users)
+
+# --------------------------------
+# ---------- FUNCTIONS -----------
+
+def update_database(data):
+    open("users.json", "w").write(json.dumps(data))
