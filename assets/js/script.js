@@ -3,7 +3,7 @@ var xhr = new XMLHttpRequest();
 var index = 0;
 var currentGame = {
     "pseudo" : "Guest",
-    "password" : null,
+    "password" : "",
     "score" : 0
 };
 var cartes = [];
@@ -87,26 +87,137 @@ function next()
     }
 }
 
-function sendName()
+function checkInput(pseudo, password)
 {
-    let popUp = document.getElementById('name-pop-up');
-    currentGame.pseudo = popUp.getElementsByTagName('input')[0].value;
-    if (currentGame.pseudo.length >= 3 && currentGame.pseudo.length <= 16)
+    if(pseudo == "" || password == "")
     {
+        document.querySelector('#monkey-interface p').innerHTML = "Each field need to be filled";
+        $("#monkey-interface").fadeIn(1000);
+    }
+    else if(pseudo.length < 3)
+    {
+        document.querySelector('#monkey-interface p').innerHTML = "Pseudo is too short !";
+        $("#monkey-interface").fadeIn(1000);
+    }
+    else if(pseudo.length > 16)
+    {
+        document.querySelector('#monkey-interface p').innerHTML = "Pseudo is too long !";
+        $("#monkey-interface").fadeIn(1000);
+    }
+    else if(password.length < 4)
+    {
+        document.querySelector('#monkey-interface p').innerHTML = "Password is too short !";
+        $("#monkey-interface").fadeIn(1000);
+    }
+    else
+    {
+        return true;
+    }
+
+    return false;
+}
+
+async function loginRequest(pseudo, password)
+{
+    let apiResponse;
+
+    await fetch(`http://${host}:${port}/login`, {
+        method : 'POST',
+        headers : {
+            "Content-type" : "application/json"
+        },
+        body : JSON.stringify({pseudo, password})
+    })
+    .then(response => response.json())
+    .then(json => apiResponse = json);
+
+    return apiResponse;
+}
+
+async function register()
+{
+    let pseudo = document.querySelector('#pseudo').value, password = document.querySelector('#password').value;
+    if(!checkInput(pseudo, password)) return;
+
+    if(await loginRequest(pseudo, password) == undefined)
+    {
+        await fetch(`http://${host}:${port}/register`, {
+            method : 'POST',
+            headers : {
+                "Content-type" : "application/json"
+            },
+            body : JSON.stringify({pseudo, password})
+        });
+
+        document.querySelector('#monkey-interface p').style.backgroundColor = 'rgb(51, 192, 0)';
+        document.querySelector('#monkey-interface p').innerHTML = "Account created !";
+        $("#monkey-interface").fadeIn(1000);
+    }
+    else
+    {
+        document.querySelector('#monkey-interface p').innerHTML = "Account already exist !";
+        $("#monkey-interface").fadeIn(1000);
+    }
+}
+
+async function unregister()
+{
+    let pseudo = document.querySelector('#pseudo').value, password = document.querySelector('#password').value;
+    if(!checkInput(pseudo, password)) return;
+
+    if(await loginRequest(pseudo, password) != undefined)
+    {
+        await fetch(`http://${host}:${port}/delete`, {
+            method : 'DELETE',
+            headers : {
+                "Content-type" : "application/json"
+            },
+            body : JSON.stringify({pseudo, password})
+        });
+
+        document.querySelector('#monkey-interface p').style.backgroundColor = 'rgb(51, 192, 0)';
+        document.querySelector('#monkey-interface p').innerHTML = "Account deleted !";
+        $("#monkey-interface").fadeIn(1000);
+    }
+    else
+    {
+        document.querySelector('#monkey-interface p').innerHTML = "Account doesn't exist !";
+        $("#monkey-interface").fadeIn(1000);
+    }
+}
+
+async function login()
+{
+    let pseudo = document.querySelector('#pseudo').value, password = document.querySelector('#password').value;
+    if(!checkInput(pseudo, password)) return;
+    let apiResponse = await loginRequest(pseudo, password);
+
+    if(apiResponse.pseudo == undefined)
+    {   
+        document.querySelector('#monkey-interface p').innerHTML = "Wrong username/password !";
+        $("#monkey-interface").fadeIn(1000);
+    }
+    else
+    {
+        currentGame.pseudo = apiResponse.pseudo;
+        currentGame.score = apiResponse.score;
+        currentGame.password = apiResponse.password;
+
         $("#name-pop-up").fadeOut(1000);
-        $("#wrong-nickname").fadeOut(1000);
+        $("#monkey-interface").fadeOut(1000);
         $("#dots").fadeOut(1000);
         $('#leaderboard').css("display", "flex").hide().fadeIn(1500);
         $('header').css("display", "flex").hide().fadeIn(1500);
         document.querySelector('#content').style.marginTop = '10px';
         document.querySelector('#name').innerHTML = currentGame.pseudo;
-        
+
         fetch(`http://${host}:${port}/ranking`, {
             method: "GET"
         })
         .then((result) => result.json())
         .then((data) => {
             data.forEach(element => {
+                if(element.score == 'null') return;
                 let newLine = document.querySelector('.line').cloneNode(true);
     
                 newLine.querySelector(".rankingUsername").innerHTML = element.pseudo;
@@ -124,10 +235,6 @@ function sendName()
             cartes = data;
         });
     }   
-    else
-    {
-        $("#wrong-nickname").fadeIn(1000);
-    }
 }
 
 function result() {
@@ -191,7 +298,7 @@ for (let index = 0; index < circleRand.length; index++)
 
 $("#pseudo").click(function ()
 {
-    $("#wrong-nickname").fadeOut(1000);
+    $("#monkey-interface").fadeOut(1000);
 })
 
 function lunatic()
@@ -220,8 +327,79 @@ function retour()
     document.getElementById('mainInfo').innerHTML = "Overall Ranking";
 }
 
+async function verify()
+{
+    if( document.querySelector('#pseudoVerify').value == currentGame.pseudo &&
+        document.querySelector('#passwordVerify').value == currentGame.password)
+    {
+        document.querySelector('#changePseudoButton').removeAttribute('disabled');
+        document.querySelector('#changePasswordButton').removeAttribute('disabled');
+
+        document.querySelector('#pseudoVerify').value = "";
+        document.querySelector('#passwordVerify').value = "";
+
+        document.querySelector('#pseudoVerify').setAttribute('disabled', null);
+        document.querySelector('#passwordVerify').setAttribute('disabled', null);
+
+        document.querySelector('#mgrAccountValid').innerHTML = "Change";
+        document.querySelector('#mgrAccountValid').setAttribute('disabled', null);
+    }
+    else document.querySelector('#mainInfo').innerHTML = "Login failed"
+}
+
+function displayManageAccountPage()
+{
+    document.querySelector('#leaderboard').style.display = "none";
+    document.querySelector('#manageAccountPage').style.display = "block";
+    document.querySelector('#mainInfo').innerHTML = "Please relogin"
+}
+
+function changePseudo()
+{
+    document.querySelector('#pseudoVerify').removeAttribute('disabled');
+    document.querySelector('#mgrAccountValid').removeAttribute('disabled');
+    document.querySelector('#mgrAccountValid').setAttribute('onclick', 'sendNewPseudo()');
+}
+
+function sendNewPseudo()
+{
+    fetch(`http://${host}:${port}/change_pseudo`, {
+        method : 'PATCH',
+        headers : {
+            'Content-type' : 'application/json'
+        },
+        body : JSON.stringify({
+            pseudo : currentGame.pseudo,
+            password : currentGame.password,
+            new_pseudo : document.querySelector('#pseudoVerify').value
+        })
+    });
+}
+
+function changePassword()
+{
+    document.querySelector('#passwordVerify').removeAttribute('disabled');
+    document.querySelector('#mgrAccountValid').removeAttribute('disabled');
+    document.querySelector('#mgrAccountValid').setAttribute('onclick', 'sendNewPassword()');
+}
+
+function sendNewPassword()
+{
+    fetch(`http://${host}:${port}/change_password`, {
+        method : 'PATCH',
+        headers : {
+            'Content-type' : 'application/json'
+        },
+        body : JSON.stringify({
+            pseudo : currentGame.pseudo,
+            password : currentGame.password,
+            new_password : document.querySelector('#passwordVerify').value
+        })
+    });
+}
+
 /*  var refresh = setInterval(
     function () {
         $('#leaderboard').load("index.html");
     },
-    3000);   */
+    3000); */

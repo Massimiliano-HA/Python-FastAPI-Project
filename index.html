@@ -11,7 +11,6 @@
     <script src="./assets/js/script.js" defer></script>
     <script src="./assets/js/animation.js" defer></script>
     <link rel="shortcut icon" href="assets/img/logo.jpeg" type="image/x-icon">
-
 </head>
 
 <body>
@@ -36,8 +35,11 @@
 
     <div id="name-pop-up">
         <label for="name">Coding Quiz</label>
-        <input id="pseudo" type="text" placeholder="Entrez votre pseudo pour commencer !">
-        <button onclick="sendName()">Valider</button>
+        <input id="pseudo" type="text" placeholder="Username">
+        <input id="password" type="password" placeholder="Password">
+        <button onclick="login()">login</button>
+        <button onclick="register()">create account</button>
+        <button onclick="unregister()">delete account</button>
         <span class="circleRandom bluegreen"></span>
         <span class="circleRandom greenpastel"></span>
         <span class="circleRandom pinkpastel"></span>
@@ -64,10 +66,9 @@
         <span class="circleRandom orangepastel"></span>
     </div>
 
-    <div id="wrong-nickname">
+    <div id="monkey-interface">
         <p>Pseudo Incorrect !</p>
     </div>
-
 
     <!-- <div id="ranking">
         <div id="rankingLineOrigin">
@@ -79,18 +80,11 @@
         </div>
     </div> -->
 
-
     <div id="result">
         <img src="assets/img/ranking-x.png" alt="rating" id="rating" onclick="lunatic()" />
         <p id="name">Pseudo</p>
         <p id="results">Vous êtes aptes pour rentrer à la Coding.</p>
     </div>
-
-
-
-
-
-
 
     <div id="content">
         <section id="carteOrigin">
@@ -126,6 +120,22 @@
             </tbody>
         </table>
     </div>
+
+    <div id="manageAccount">
+        <button onclick="displayManageAccountPage()">Manage Account</button>
+    </div>
+
+    <section id="manageAccountPage">
+        <div>
+            <input id="pseudoVerify" type="text" placeholder="Username">
+            <input id="passwordVerify" type="password" placeholder="Password">
+            <button id="mgrAccountValid" onclick="verify()">Verify</button>
+        </div>
+        <div>
+            <button id="changePseudoButton" disabled onclick="changePseudo()">Change pseudo</button>
+            <button id="changePasswordButton" disabled onclick="changePassword()">Change password</button>
+        </div>
+    </section>
 
     <div id="retour-fin">
         <button id="retour" onclick="retour()">Retour au menu</button>

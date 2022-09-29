@@ -257,6 +257,7 @@ tbody {
 
 #start-button,
 #retour,
+#manageAccount > button,
 #rickRoll {
     border: 0;
     border-radius: 12px;
@@ -286,12 +287,16 @@ tbody {
 }
 
 #retour,
+#manageAccount > button,
 #start-button {
     background: linear-gradient(to bottom right, #ed395a, #d238e0);
     display: block;
 }
 
-#start-button:hover, #start-button:active{
+#start-button:hover,
+#manageAccount > button:hover,
+#manageAccount > button:active,
+#start-button:active{
     box-shadow: #e73c7e 0px 0px 5px;
 }
 
@@ -448,7 +453,7 @@ tbody {
     text-align: center;
 }
 
-#wrong-nickname {
+#monkey-interface {
     position: absolute;
     bottom: 0;
     right: 0;
@@ -458,5 +463,15 @@ tbody {
     font-family: 'Roboto';
     letter-spacing: 2px;
     padding: 0px 20px;
+    display: none;
+}
+
+#manageAccount {
+    position: absolute;
+    bottom: 0px;
+    left: 10px;
+}
+
+#manageAccountPage {
     display: none;
 }
