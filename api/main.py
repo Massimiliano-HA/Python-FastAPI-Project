@@ -35,6 +35,15 @@ def read_questions():
         questions = json.load(f)
     return questions
 
+@app.get("/users")
+async def item():
+    return users
+
+
+@app.get("/users/sort")
+async def items_sort():
+    return sorted(users, key=lambda x: x["score"], reverse=True)
+
 # ---------- POST
 
 @app.post("/login")
