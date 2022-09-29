@@ -7,6 +7,7 @@ app = FastAPI()
 
 origins = [
     "http://127.0.0.1",
+    "http://127.0.0.1:5500",
     "http://93.95.32.114"
 ]
 
@@ -14,7 +15,13 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
     allow_credentials=True,
-    allow_methods=["*"],
+    allow_methods=[
+        "GET",
+        "POST",
+        "PATCH",
+        "PUT",
+        "DELETE"
+    ],
     allow_headers=["*"],
 )
 
@@ -102,6 +109,16 @@ def change_password(y: recup_data):
           if b['pseudo'] == y.pseudo and b['password'] == y.password:
                b['password'] = y.new_password
                update_database(users)
+
+# ---------- DELETE
+
+@app.delete("/delete")
+async def delete_item(deleteUser : Basic_user):
+    for user in users:
+        if(user["pseudo"] == deleteUser.pseudo):
+            users.remove(user)
+            update_database(users)
+    return
 
 # --------------------------------
 # ---------- FUNCTIONS -----------
