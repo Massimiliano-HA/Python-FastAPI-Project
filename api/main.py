@@ -103,7 +103,7 @@ def change_name(x: recup_data):
                a['pseudo'] = x.new_pseudo
                update_database(users)
 
-@app.patch("change_password")
+@app.patch("/change_password")
 def change_password(y: recup_data):
      for b in users:
           if b['pseudo'] == y.pseudo and b['password'] == y.password:
