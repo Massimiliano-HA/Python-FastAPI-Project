@@ -41,6 +41,7 @@ function startTest()
     generateCarte();
     document.querySelector('#content').style.display = 'flex';
     document.getElementById("start-button").style.display = "none";
+    document.querySelector("#manageAccount").style.display = "none";
     document.getElementById("rickRoll").style.display = "block";
     
     $("#content").css("display", "flex").hide().fadeIn();
@@ -143,7 +144,7 @@ async function register()
 
     if(apiResponse.pseudo == undefined)
     {
-        await fetch(`http://${host}:${port}/register`, {
+        fetch(`http://${host}:${port}/register`, {
             method : 'POST',
             headers : {
                 "Content-type" : "application/json"
@@ -151,7 +152,7 @@ async function register()
             body : JSON.stringify({pseudo, password})
         });
 
-        document.querySelector('#monkey-interface p').style.backgroundColor = 'rgb(51, 192, 0)';
+        document.querySelector('#monkey-interface').style.backgroundColor = 'rgb(51, 192, 0)';
         document.querySelector('#monkey-interface p').innerHTML = "Account created !";
         $("#monkey-interface").fadeIn(1000);
     }
@@ -178,7 +179,7 @@ async function unregister()
             body : JSON.stringify({pseudo, password})
         });
 
-        document.querySelector('#monkey-interface p').style.backgroundColor = 'rgb(51, 192, 0)';
+        document.querySelector('#monkey-interface').style.backgroundColor = 'rgb(51, 192, 0)';
         document.querySelector('#monkey-interface p').innerHTML = "Account deleted !";
         $("#monkey-interface").fadeIn(1000);
     }
@@ -330,30 +331,34 @@ async function retour()
     $('#retour-fin').fadeOut(1000);
     $('#leaderboard').fadeIn(1500);
     document.getElementById('mainInfo').innerHTML = "Overall Ranking";
+    document.querySelector("#manageAccount").style.display = "block";
 }
 
 async function verify()
 {
-    if( document.querySelector('#pseudoVerify').value == currentGame.pseudo &&
-        document.querySelector('#passwordVerify').value == currentGame.password)
+    if( document.querySelector('#pseudoAccountInput').value == currentGame.pseudo &&
+    document.querySelector('#passwordAccountInput').value == currentGame.password)
     {
         document.querySelector('#changePseudoButton').removeAttribute('disabled');
         document.querySelector('#changePasswordButton').removeAttribute('disabled');
-
-        document.querySelector('#pseudoVerify').value = "";
-        document.querySelector('#passwordVerify').value = "";
-
-        document.querySelector('#pseudoVerify').setAttribute('disabled', null);
-        document.querySelector('#passwordVerify').setAttribute('disabled', null);
+        
+        document.querySelector('#pseudoAccountInput').value = "";
+        document.querySelector('#passwordAccountInput').value = "";
+        
+        document.querySelector('#pseudoAccountInput').setAttribute('disabled', null);
+        document.querySelector('#passwordAccountInput').setAttribute('disabled', null);
 
         document.querySelector('#mgrAccountValid').innerHTML = "Change";
         document.querySelector('#mgrAccountValid').setAttribute('disabled', null);
+        
+        document.querySelector('#mainInfo').innerHTML = "Account Management"
     }
     else document.querySelector('#mainInfo').innerHTML = "Login failed"
 }
 
 function displayManageAccountPage()
 {
+    document.querySelector("#manageAccount").style.display = "none";
     document.querySelector('#leaderboard').style.display = "none";
     document.querySelector('#manageAccountPage').style.display = "block";
     document.querySelector('#mainInfo').innerHTML = "Please relogin"
@@ -361,9 +366,22 @@ function displayManageAccountPage()
 
 function changePseudo()
 {
-    document.querySelector('#pseudoVerify').removeAttribute('disabled');
+    document.querySelector('#changePseudoButton').setAttribute('disabled', null);
+    document.querySelector('#changePasswordButton').setAttribute('disabled', null);
+
+    document.querySelector('#pseudoAccountInput').removeAttribute('disabled');
     document.querySelector('#mgrAccountValid').removeAttribute('disabled');
     document.querySelector('#mgrAccountValid').setAttribute('onclick', 'sendNewPseudo()');
+}
+
+function changePassword()
+{
+    document.querySelector('#changePseudoButton').setAttribute('disabled', null);
+    document.querySelector('#changePasswordButton').setAttribute('disabled', null);
+
+    document.querySelector('#passwordAccountInput').removeAttribute('disabled');
+    document.querySelector('#mgrAccountValid').removeAttribute('disabled');
+    document.querySelector('#mgrAccountValid').setAttribute('onclick', 'sendNewPassword()');
 }
 
 function sendNewPseudo()
@@ -376,16 +394,19 @@ function sendNewPseudo()
         body : JSON.stringify({
             pseudo : currentGame.pseudo,
             password : currentGame.password,
-            new_pseudo : document.querySelector('#pseudoVerify').value
+            new_pseudo : document.querySelector('#pseudoAccountInput').value
         })
     });
-}
 
-function changePassword()
-{
-    document.querySelector('#passwordVerify').removeAttribute('disabled');
-    document.querySelector('#mgrAccountValid').removeAttribute('disabled');
-    document.querySelector('#mgrAccountValid').setAttribute('onclick', 'sendNewPassword()');
+    currentGame.pseudo = document.querySelector('#pseudoAccountInput').value;
+    
+    document.querySelector('#pseudoAccountInput').value = "";
+
+    document.querySelector('#mgrAccountValid').setAttribute('disabled', null);
+    document.querySelector('#pseudoAccountInput').setAttribute('disabled', null);
+
+    document.querySelector('#changePseudoButton').removeAttribute('disabled');
+    document.querySelector('#changePasswordButton').removeAttribute('disabled');
 }
 
 function sendNewPassword()
@@ -398,9 +419,39 @@ function sendNewPassword()
         body : JSON.stringify({
             pseudo : currentGame.pseudo,
             password : currentGame.password,
-            new_password : document.querySelector('#passwordVerify').value
+            new_password : document.querySelector('#passwordAccountInput').value
         })
     });
+
+    currentGame.password = document.querySelector('#passwordAccountInput').value;
+
+    document.querySelector('#passwordAccountInput').value = "";
+
+    document.querySelector('#mgrAccountValid').setAttribute('disabled', null);
+    document.querySelector('#passwordAccountInput').setAttribute('disabled', null);
+
+    document.querySelector('#changePseudoButton').removeAttribute('disabled');
+    document.querySelector('#changePasswordButton').removeAttribute('disabled');
+}
+
+function displayMainPage()
+{
+    document.querySelector('#leaderboard').style.display = 'flex';
+    document.querySelector('#manageAccountPage').style.display = 'none';
+
+    document.querySelector('#mainInfo').innerHTML = "Overall Ranking"
+
+    document.querySelector('#changePseudoButton').setAttribute('disabled', null);
+    document.querySelector('#changePasswordButton').setAttribute('disabled', null);
+
+    document.querySelector('#pseudoAccountInput').removeAttribute('disabled');
+    document.querySelector('#passwordAccountInput').removeAttribute('disabled');
+
+    document.querySelector('#mgrAccountValid').setAttribute('onclick', 'verify()');
+    document.querySelector('#mgrAccountValid').innerHTML = 'Verify';
+    document.querySelector('#mgrAccountValid').removeAttribute('disabled');
+
+    document.querySelector("#manageAccount").style.display = "block";
 }
 
 /*  var refresh = setInterval(

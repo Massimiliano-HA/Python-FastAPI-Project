@@ -36,7 +36,8 @@
     <div id="name-pop-up">
         <label for="name">Coding Quiz</label>
         <input id="pseudo" type="text" placeholder="Username">
-        <input id="password" type="password" placeholder="Password">
+        <input id="password" type="password" placeholder
+        ="Password">
         <button onclick="login()">login</button>
         <button onclick="register()">create account</button>
         <button onclick="unregister()">delete account</button>
@@ -69,16 +70,6 @@
     <div id="monkey-interface">
         <p>Pseudo Incorrect !</p>
     </div>
-
-    <!-- <div id="ranking">
-        <div id="rankingLineOrigin">
-            <div class="rankingLine">
-                <img class="rankingNote" src="">
-                <p class="rankingUsername">---</p>
-                <p class="rankingUserNote">---</p>
-            </div>
-        </div>
-    </div> -->
 
     <div id="result">
         <img src="assets/img/ranking-x.png" alt="rating" id="rating" onclick="lunatic()" />
@@ -127,13 +118,16 @@
 
     <section id="manageAccountPage">
         <div>
-            <input id="pseudoVerify" type="text" placeholder="Username">
-            <input id="passwordVerify" type="password" placeholder="Password">
+            <input id="pseudoAccountInput" type="text" placeholder="Username">
+            <input id="passwordAccountInput" type="password" placeholder="Password">
             <button id="mgrAccountValid" onclick="verify()">Verify</button>
         </div>
         <div>
             <button id="changePseudoButton" disabled onclick="changePseudo()">Change pseudo</button>
             <button id="changePasswordButton" disabled onclick="changePassword()">Change password</button>
+        </div>
+        <div>
+            <button onclick="displayMainPage()">Main page</button>
         </div>
     </section>
 
