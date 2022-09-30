@@ -52,7 +52,7 @@ class recup_data(BaseModel):
 
 @app.get("/questions")
 def read_questions():
-    with open("questions.json", "r") as f:
+    with open("questions.json", encoding="utf-8") as f:
         questions = json.load(f)
     return questions
 
