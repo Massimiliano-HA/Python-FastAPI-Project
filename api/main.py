@@ -98,17 +98,17 @@ async def upload_score(current_score: current_game):
 
 @app.patch("/change_pseudo")
 def change_name(x: recup_data):
-     for a in users:
-          if a['pseudo'] == x.pseudo and a['password'] == x.password:
-               a['pseudo'] = x.new_pseudo
-               update_database(users)
+    for a in users:
+        if a['pseudo'] == x.pseudo and a['password'] == x.password:
+            a['pseudo'] = x.new_pseudo
+            update_database(users)
 
 @app.patch("/change_password")
 def change_password(y: recup_data):
-     for b in users:
-          if b['pseudo'] == y.pseudo and b['password'] == y.password:
-               b['password'] = y.new_password
-               update_database(users)
+    for b in users:
+        if b['pseudo'] == y.pseudo and b['password'] == y.password:
+            b['password'] = y.new_password
+            update_database(users)
 
 # ---------- DELETE
 
