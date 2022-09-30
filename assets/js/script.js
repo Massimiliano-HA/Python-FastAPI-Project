@@ -4,7 +4,7 @@ var index = 0;
 var currentGame = {
     "pseudo" : "Guest",
     "password" : "",
-    "score" : 0
+    "score" : null
 };
 var cartes = [];
 
@@ -29,7 +29,8 @@ function generateCarte()
 }
 
 function startTest()
-{  
+{
+    currentGame.score = 0;
     if (index != 0) {
         var cartes = document.getElementsByClassName('carte');
         for (let j = 0; j < cartes.length; j++) {
@@ -138,8 +139,9 @@ async function register()
 {
     let pseudo = document.querySelector('#pseudo').value, password = document.querySelector('#password').value;
     if(!checkInput(pseudo, password)) return;
+    let apiResponse = await loginRequest(pseudo, password);
 
-    if(await loginRequest(pseudo, password) == undefined)
+    if(apiResponse.pseudo == undefined)
     {
         await fetch(`http://${host}:${port}/register`, {
             method : 'POST',
@@ -164,8 +166,9 @@ async function unregister()
 {
     let pseudo = document.querySelector('#pseudo').value, password = document.querySelector('#password').value;
     if(!checkInput(pseudo, password)) return;
-
-    if(await loginRequest(pseudo, password) != undefined)
+    let apiResponse = await loginRequest(pseudo, password);
+    
+    if(apiResponse.pseudo != undefined)
     {
         await fetch(`http://${host}:${port}/delete`, {
             method : 'DELETE',
@@ -243,9 +246,7 @@ function result() {
     $('#result').css("display", "flex").hide().fadeIn(400);
     $('#retour-fin').css("display", "flex").hide().fadeIn(400);
     // .....
-
-    document.querySelector('#mainInfo').innerHTML = currentGame.score * 100 / cartes.length + '%';
-
+    
     if(currentGame.score < cartes.length * 0.5){
         document.querySelector("#rating").setAttribute("src", "assets/img/ranking-d.png");
         document.getElementById("results").innerHTML = "Va falloir bosser...";
@@ -270,14 +271,10 @@ function result() {
         document.querySelector("#rating").setAttribute("src", "assets/img/ranking-X.png");
         document.getElementById("results").innerHTML = "DIVIIIIIIIINNNNNN";
     }
-}
 
-/* for (let index = 0; index < 10; index++) 
-{
-    let newLine = document.querySelector('.line').cloneNode(true);
-    document.getElementById('tab').appendChild(newLine);
-    
-} */
+    currentGame.score = currentGame.score * 100 / cartes.length + '%';
+    document.querySelector('#mainInfo').innerHTML = currentGame.score;
+}
 
 function Random()
 {
@@ -311,14 +308,22 @@ function lunatic()
     }
 }
 
-function retour()
+async function retour()
 {
-    fetch(`http://${host}:${port}/upload`, {
+    let pload = {
+        pseudo : currentGame.pseudo,
+        password : currentGame.password,
+        score : currentGame.score
+    };
+
+    console.log(currentGame.score);
+
+    await fetch(`http://${host}:${port}/upload`, {
         method: 'PATCH',
         headers: {
-            'Content-Type' : 'application/json'
+            "Content-type" : "application/json"
         },
-        body: JSON.stringify(currentGame)
+        body: JSON.stringify(pload)
     });
     
     $('#result').css("display", "none");
