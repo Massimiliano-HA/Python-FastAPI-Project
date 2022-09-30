@@ -120,8 +120,8 @@ async def item():
 async def items_sort():
     return sorted(users, key=lambda x: x["score"], reverse=True)
 
-# ---------- POST
 
+# ---------- POST
 
 # Function that allows you to connect with your username and password by comparing with the data in users.json :
 @app.post("/login")
@@ -145,8 +145,8 @@ async def register_user(new_user: Basic_user):
     update_database(users)
     return
 
-# ---------- PATCH
 
+# ---------- PATCH
 
 # Function that allows you to update your score in users.json according to your number of correct answers to questions :
 @app.patch("/upload")
@@ -175,8 +175,8 @@ def change_password(y: recup_data):
             b['password'] = y.new_password
             update_database(users)
 
-# ---------- DELETE
 
+# ---------- DELETE
 
 # Function that allows to delete an account in users.json from the logged in account :
 @app.delete("/delete")
@@ -187,9 +187,9 @@ async def delete_item(deleteUser: Basic_user):
             update_database(users)
     return
 
+
 # --------------------------------
 # ---------- FUNCTIONS -----------
-
 
 def update_database(data):
     open("users.json", "w").write(json.dumps(data))
