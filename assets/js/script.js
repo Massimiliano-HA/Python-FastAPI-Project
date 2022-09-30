@@ -1,5 +1,6 @@
 var host = '127.0.0.1', port = 8000;
-var xhr = new XMLHttpRequest();
+var refreshLeaderboardID;
+var totalScore;
 var index = 0;
 var currentGame = {
     "pseudo" : "Guest",
@@ -215,11 +216,34 @@ async function login()
         document.querySelector('#content').style.marginTop = '10px';
         document.querySelector('#name').innerHTML = currentGame.pseudo;
 
+        refreshLeaderboardID = refreshLeaderboard();
+
+        fetch(`http://${host}:${port}/questions`, {
+            method: "GET"
+        })
+        .then((result) => result.json())
+        .then((data) => {
+            cartes = data;
+        });
+    }   
+}
+
+function refreshLeaderboard()
+{
+    return setInterval(() => {
+        console.log('Refreshing');
+
+        for(let i=0; i < totalScore; i++)
+        {
+            document.getElementById('tab').removeChild(document.getElementById('tab').lastChild);
+        }
+
         fetch(`http://${host}:${port}/ranking`, {
             method: "GET"
         })
         .then((result) => result.json())
         .then((data) => {
+            totalScore = data.length;
             data.forEach(element => {
                 if(element.score == 'null') return;
                 let newLine = document.querySelector('.line').cloneNode(true);
@@ -230,15 +254,7 @@ async function login()
                 document.getElementById('tab').appendChild(newLine);
             });
         });
-
-        fetch(`http://${host}:${port}/questions`, {
-            method: "GET"
-        })
-        .then((result) => result.json())
-        .then((data) => {
-            cartes = data;
-        });
-    }   
+    }, 5000);
 }
 
 function result() {
