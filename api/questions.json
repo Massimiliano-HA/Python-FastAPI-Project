@@ -1,264 +1,126 @@
 [
     {
-        "question" : "Quelle balise est utilisée pour lier le CSS à l'HTML?",
+        "question" : "Quel protocole de communication est préférablement utilisé pour envoyer des données tels que des messages ?",
         "answers" : [
-            "meta",
-            "script",
-            "link",
-            "css"
+            "TCP",
+            "UDP"
+        ],
+        "goodAnswerIndex" : [
+            0
+        ]
+    },
+    {
+        "question" : "Quel genre de donnée evoie les requêtes HTTP ?",
+        "answers" : [
+            "Binaire",
+            "Hexadécimale",
+            "Texte",
+            "Chiffres"
         ],
         "goodAnswerIndex" : [
             2
         ]
     },
     {
-        "question" : "Quelle balise est utilisée pour ajouter du Javascript à l'HTML?",
+        "question" : "A quoi sert CORS ?",
         "answers" : [
-            "link",
-            "js",
-            "meta",
-            "script"
-        ],
-        "goodAnswerIndex" : [
-            3
-        ]
-    },
-    {
-        "question" : "La méthode POST utilisée pour l'envoi de formulaire renvoie les données dans l'URL",
-        "answers" : [
-            "Vrai",
-            "Faux"
+            "Faire chier",
+            "Filtrer les ressouces venant de domaines extérieurs",
+            "Proteger sa page HTML de requêtes malveillantes ",
+            "Creer un VPN privé pour serveur pour augmenter la sécurité"
         ],
         "goodAnswerIndex" : [
             1
         ]
     },
     {
-        "question": "Le HTML est un langage de programmation",
-        "answers": [
-            "Vrai",
-            "Faux"
+        "question" : "Qu'est ce que le modèle OSI (utilisé pour les communication réseau) ?",
+        "answers" : [
+            "Modèle de programmation",
+            "Framwork",
+            "Norme",
+            "Loi",
+            "Oof"
         ],
-        "goodAnswerIndex": [
-            1
-        ]
-    },
-    {
-        "question": "(CSS) Que fait la propriété padding ?",
-        "answers": [
-            "Ça rajoute une marge intérieure",
-            "Ça rajoute une marge extérieure",
-            "Ça rajoute une bordure"
-        ],
-        "goodAnswerIndex": [
-            0
-        ]
-    },
-    {
-        "question": "(CSS) Que fait la propriété margin ?",
-        "answers": [
-            "Ça rajoute une marge intérieure",
-            "Ça rajoute une marge extérieure",
-            "Ça rajoute une bordure"
-        ],
-        "goodAnswerIndex": [
-            1
-        ]
-    },
-    {
-        "question": "(CSS) Quelle syntaxe est correcte ?",
-        "answers": [
-            "text-align: center;",
-            "text-align{ center; }",
-            "text-align(center)"
-        ],
-        "goodAnswerIndex": [
-            0
-        ]
-    },
-    {
-        "question": "Java est-il un langage ...",
-        "answers": [
-            "Interprété",
-            "Compilé",
-            "Plus compliqué que ça encore"
-        ],
-        "goodAnswerIndex": [
+        "goodAnswerIndex" : [
             2
         ]
     },
     {
-        "question": "(Java) Quel type de variable désigne un nombre entier ?",
-        "answers": [
-            "int",
-            "double",
-            "float",
-            "String",
-            "entier"
-        ],
-        "goodAnswerIndex": [
-            0
-        ]
-    },
-    {
-        "question" : "(Java) Quel syntaxe de déclaration est correct ?",
+        "question" : "A quoi fait référence \"La couche 8\" dans le modèle OSI ?",
         "answers" : [
-            "maVariable = \"hello world\";",
-            "string = 'Hello world';",
-            "char maVariable = \"Hello world\";",
-            "string maVariable = \"Hello world\";",
-            "String maVariable = \"Hello world\";",
-            "\"Hello world\" = maVariable(string);",
-            "string(maVariable) = \"Hello world\";",
-            "String maVariable(\"Hello world\";)"
+            "Protocole TCP / UDP",
+            "Adresse IP",
+            "Data",
+            "Adresse mac",
+            "L'interface chaise-clavier"
         ],
         "goodAnswerIndex" : [
             4
         ]
     },
     {
-        "question" : "(Java) Qu'est ce que \"String\" ?",
+        "question" : "Quel langage de programmation choisir si vous êtes payer a l'heure ?",
         "answers" : [
-            "Un type de variable",
-            "Une classe",
-            "Une fonction",
-            "Une méthode",
-            "Une variable",
-            "Un type de sous-vêtement"
-        ],
-        "goodAnswerIndex" : [
-            1
-        ]
-    },
-    {
-        "question": "(Java) Qu'est ce qu'une méthode statique ?",
-        "answers": [
-            "Une méthode qui ne bouge pas dans le code",
-            "Une méthode qui ne change pas de taille",
-            "Une méthode lambda",
-            "Une méthode qui ne prend aucun paramètre",
-            "Une méthode qui ne demande pas d'objet pour être appelée",
-            "Une méthode qui peut être appelée une seule fois"
-        ],
-        "goodAnswerIndex": [
-            4
-        ]
-    },
-    {
-        "question": "Quel est le niveau du langage Python ?",
-        "answers": [
-            "Bas niveau",
-            "Facile",
-            "Intermédiaire",
-            "Haut niveau"
-        ],
-        "goodAnswerIndex": [
-            3
-        ]
-    },
-    {
-        "question": "(Python) Quel est la syntaxe de la boucle for correcte?",
-        "answers": [
-            "for(i = 0; i == 2; i++)",
-            "for i in range(2)",
-            "for(i:2)",
-            "for (i = 0, i == 2, i++)"
-        ],
-        "goodAnswerIndex": [
-            1
-        ]
-    },
-    {
-        "question": "(Python) Comment définir une fonction ?",
-        "answers": [
-            "function test(parameters)",
-            "funct test(parameters)",
-            "def test(parameters)",
-            "function test(var parameters)",
-            "funct test(var parameters)",
-            "def test(var parameters)"
-        ],
-        "goodAnswerIndex": [
-            2
-        ]
-    },
-    {
-        "question" : "En JavaScript, quel est la différence entre var et let ?",
-        "answers" : [
-            "La portée",
-            "La taille maximal de la variable",
-            "L'un est pour le client, l'autre pour le serveur",
-            "La vitesse de localisation"
-        ],
-        "goodAnswerIndex" : [
-            0
-        ]
-    },
-    {
-        "question" : "JavaScript est-il typé ?",
-        "answers" : [
-            "Oui",
-            "Non"
-        ],
-        "goodAnswerIndex" : [
-            1
-        ]
-    },
-    {
-        "question" : "(JavaScript) La syntaxe c = (a, b) => a * (a + b) / b; existe-t-elle et est-elle correct ?",
-        "answers" : [
-            "Oui",
-            "Non"
-        ],
-        "goodAnswerIndex" : [
-            0
-        ]
-    },
-    {
-        "question" : "(JavaScript) Quel objet javascript permet d'acceder au DOM ?",
-        "answers" : [
-            "dom",
-            "http",
-            "document",
-            "page",
-            "mainPage"
-        ],
-        "goodAnswerIndex" : [
-            2
-        ]
-    },
-    {
-        "question" : "(JavaScript) Quel framework de JavaScript permet de créer un serveur ?",
-        "answers" : [
-            "AngularJS",
-            "React",
-            "Vue.js",
-            "jQuerry",
-            "NodeJS"
-        ],
-        "goodAnswerIndex" : [
-            4
-        ]
-    },
-    {
-        "question" : "Question Bonus - A quel langage appartient cette syntaxe : std::thread* task(sorting, &data, dataSize, \"QuickSort\", &sortedData);",
-        "answers" : [
-            "Java",
-            "JavaScript",
-            "HTML",
-            "CSS",
-            "PHP",
+            "Python",
             "C",
-            "Pascal",
-            "Fortran",
-            "C++",
-            "C#",
-            "Brainfuck",
-            "Ruby",
-            "Whitespace"
+            "Java",
+            "ASM x86",
+            "JavaScript"
         ],
         "goodAnswerIndex" : [
-            8
+            3
+        ]
+    },
+    {
+        "question" : "Quel est le port utilisé par défaut pour le web ?",
+        "answers" : [
+            "80",
+            "8000",
+            "8080",
+            "8081",
+            "3000"
+        ],
+        "goodAnswerIndex" : [
+            0
+        ]
+    },
+    {
+        "question" : "Dans quel cas est-t-il préférable d'utilisé POST ?",
+        "answers" : [
+            "Mettre a jour une donnée",
+            "Envoyer des données qui ne doivent pas apparaître dans l'URL",
+            "Ajouter une nouvelle donnée",
+            "Supprimé une donnée"
+        ],
+        "goodAnswerIndex" : [
+            1,
+            2
+        ]
+    },
+    {
+        "question" : "Dans quel cas est-t-il préférable d'utilisé PUT ?",
+        "answers" : [
+            "Partiellement supprimé une donnée",
+            "Totalement supprimé une donnée",
+            "Mettre a jour partiellement une donnée",
+            "Afficher une donnée",
+            "Totalement mettre a jour une donnée"
+        ],
+        "goodAnswerIndex" : [
+            4
+        ]
+    },
+    {
+        "question" : "C++ > Python",
+        "answers" : [
+            "Vrai",
+            "Faux",
+            "On s'en fou",
+            "Ça dépand..."
+        ],
+        "goodAnswerIndex" : [
+            3
         ]
     }
 ]
